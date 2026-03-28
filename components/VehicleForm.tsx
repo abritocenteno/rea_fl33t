@@ -395,37 +395,31 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
       <div className="bg-fleet-card border border-fleet-border rounded-xl p-5">
         <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-4">Afbeeldingen</h2>
 
-        {/* Existing images */}
-        {existingImages.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
+        {/* Existing + new images grid */}
+        {(existingImages.length > 0 || newPreviews.length > 0) && (
+          <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-4">
             {existingImages.map((url) => (
-              <div key={url} className="relative w-24 h-18 rounded-lg overflow-hidden border border-fleet-border group">
-                <Image src={url} alt="Vehicle" fill className="object-cover" sizes="96px" />
+              <div key={url} className="relative aspect-square rounded-lg overflow-hidden border border-fleet-border">
+                <Image src={url} alt="Vehicle" fill className="object-cover" sizes="(max-width: 640px) 33vw, 25vw" />
                 <button
                   type="button"
                   onClick={() => removeExistingImage(url)}
-                  className="absolute top-1 right-1 bg-black/70 hover:bg-fleet-red text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-all"
+                  className="absolute top-1.5 right-1.5 bg-black/60 hover:bg-fleet-red text-white rounded-full p-1 transition-colors"
                 >
-                  <FiX size={11} />
+                  <FiX size={12} />
                 </button>
               </div>
             ))}
-          </div>
-        )}
-
-        {/* New file previews */}
-        {newPreviews.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
             {newPreviews.map((src, i) => (
-              <div key={i} className="relative w-24 rounded-lg overflow-hidden border border-fleet-red/50 group">
+              <div key={i} className="relative aspect-square rounded-lg overflow-hidden border-2 border-fleet-red/50">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt="Preview" className="w-full h-18 object-cover aspect-[4/3]" />
+                <img src={src} alt="Preview" className="w-full h-full object-cover" />
                 <button
                   type="button"
                   onClick={() => removeNewFile(i)}
-                  className="absolute top-1 right-1 bg-black/70 hover:bg-fleet-red text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-all"
+                  className="absolute top-1.5 right-1.5 bg-black/60 hover:bg-fleet-red text-white rounded-full p-1 transition-colors"
                 >
-                  <FiX size={11} />
+                  <FiX size={12} />
                 </button>
                 <span className="absolute bottom-0 inset-x-0 bg-fleet-red/80 text-white text-[10px] text-center py-0.5">Nieuw</span>
               </div>

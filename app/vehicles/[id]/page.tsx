@@ -69,6 +69,21 @@ export default async function VehicleDetailPage({ params }: Props) {
         </Link>
       </div>
 
+      {/* Title — always visible above the grid */}
+      <div className="mb-5">
+        <div className="flex items-center gap-3 flex-wrap">
+          <h1 className="text-2xl font-bold text-[#0d1c2f]">
+            {vehicle.merk} {vehicle.model}
+          </h1>
+          {vehicle.sold && (
+            <span className="bg-fleet-red/10 border border-fleet-red/30 text-fleet-red text-xs font-bold px-2.5 py-0.5 rounded-full">
+              VERKOCHT
+            </span>
+          )}
+        </div>
+        <p className="text-3xl font-black text-fleet-red mt-1">{price}</p>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
         {/* Left */}
         <div className="space-y-5">
@@ -107,20 +122,7 @@ export default async function VehicleDetailPage({ params }: Props) {
         {/* Right — sticky card */}
         <aside className="lg:sticky lg:top-20 h-fit space-y-4">
           <div className="bg-fleet-card border border-fleet-border rounded-xl p-5">
-            <div className="flex items-center gap-2 mb-2">
-              <h1 className="text-xl font-bold text-white">
-                {vehicle.merk} {vehicle.model}
-              </h1>
-              {vehicle.sold && (
-                <span className="bg-fleet-red/20 border border-fleet-red/40 text-fleet-red text-xs font-bold px-2 py-0.5 rounded-full">
-                  VERKOCHT
-                </span>
-              )}
-            </div>
-
-            <p className="text-3xl font-black text-fleet-red mb-5">{price}</p>
-
-            <div className="space-y-3 border-t border-fleet-border pt-4">
+            <div className="space-y-3">
               {[
                 { icon: FiCalendar, label: 'Bouwjaar', value: vehicle.bouwjaar },
                 { icon: FiActivity, label: 'Kilometerstand', value: km },
@@ -147,9 +149,7 @@ export default async function VehicleDetailPage({ params }: Props) {
           </div>
 
           <div className="bg-fleet-card border border-fleet-border rounded-xl px-5 py-4">
-            <p className="text-[11px] text-zinc-600 uppercase tracking-wider mb-1">ID</p>
-            <p className="text-zinc-400 text-xs font-mono break-all">{vehicle.aanbod_id}</p>
-            <p className="text-[11px] text-zinc-600 uppercase tracking-wider mt-3 mb-1">Toegevoegd</p>
+            <p className="text-[11px] text-zinc-600 uppercase tracking-wider mb-1">Toegevoegd</p>
             <p className="text-zinc-400 text-xs">
               {new Date(vehicle.created_at).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>

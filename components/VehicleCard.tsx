@@ -2,10 +2,13 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { AutoDetails } from '@/lib/types'
 import { FiCalendar, FiActivity, FiDroplet, FiEdit2 } from 'react-icons/fi'
 
 export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
+  const router = useRouter()
+
   const price = vehicle.vraagprijs
     ? new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(vehicle.vraagprijs)
     : 'Prijs op aanvraag'
@@ -15,7 +18,10 @@ export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
     : '—'
 
   return (
-    <div className="group bg-fleet-card border border-fleet-border rounded-xl overflow-hidden hover:border-zinc-600 transition-all duration-200">
+    <div
+      className="group bg-fleet-card border border-[#c2c6d4]/40 rounded-xl overflow-hidden hover:border-fleet-red/40 hover:shadow-md transition-all duration-200 cursor-pointer"
+      onClick={() => router.push(`/vehicles/${vehicle.aanbod_id}`)}
+    >
       {/* Image */}
       <div className="relative aspect-[16/10] bg-fleet-bg overflow-hidden">
         {vehicle.image_url ? (
@@ -32,21 +38,20 @@ export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
           </div>
         )}
         {vehicle.sold && (
-          <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+          <div className="absolute top-2 left-2">
             <Image
               src="/images/hd-sold-red-stamp-word-png-701751694685373mjc3xeasfb.png"
               alt="Verkocht"
-              width={110}
-              height={70}
-              className="object-contain"
+              width={80}
+              height={50}
+              className="object-contain drop-shadow-md"
             />
           </div>
         )}
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute top-2 right-2" onClick={(e) => e.stopPropagation()}>
           <Link
             href={`/vehicles/${vehicle.aanbod_id}/edit`}
-            className="flex items-center gap-1 bg-black/80 hover:bg-fleet-red text-white text-xs font-medium px-2.5 py-1 rounded-lg transition-colors"
-            onClick={(e) => e.stopPropagation()}
+            className="flex items-center gap-1 bg-white/90 hover:bg-fleet-red hover:text-white text-[#0d1c2f] text-xs font-medium px-2.5 py-1 rounded-lg transition-colors shadow-sm"
           >
             <FiEdit2 size={11} /> Bewerken
           </Link>
@@ -54,9 +59,9 @@ export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
       </div>
 
       {/* Info */}
-      <Link href={`/vehicles/${vehicle.aanbod_id}`} className="block p-4">
+      <div className="p-4">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-white text-sm truncate">
+          <h3 className="font-semibold text-[#0d1c2f] text-sm truncate">
             {vehicle.merk} {vehicle.model}
           </h3>
           <span className="text-fleet-red font-bold text-sm shrink-0">{price}</span>
@@ -72,7 +77,7 @@ export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
             <span className="flex items-center gap-1"><FiDroplet size={11} />{vehicle.brandstof}</span>
           )}
         </div>
-      </Link>
+      </div>
     </div>
   )
 }

@@ -33,7 +33,7 @@ export default async function EditVehiclePage({ params }: Props) {
         <FiArrowLeft size={14} />
         Terug naar detail
       </Link>
-      <h1 className="text-xl font-bold text-white mb-6">
+      <h1 className="text-xl font-bold text-[#0d1c2f] mb-6">
         {vehicle.merk} {vehicle.model} bewerken
       </h1>
       <VehicleForm mode="edit" initialData={{ vehicle, images }} />

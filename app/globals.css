@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -12,9 +12,9 @@
 
 html,
 body {
-  background-color: #0a0a0b;
-  color: #fafafa;
-  font-family: 'Inter', sans-serif;
+  background-color: #f8f9ff;
+  color: #0d1c2f;
+  font-family: 'Manrope', 'Inter', sans-serif;
   overflow-x: hidden;
 }
 
@@ -27,14 +27,14 @@ a {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #111113;
+  background: #eff4ff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #c2c6d4;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #9099aa;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -44,9 +44,12 @@ input[type='number']::-webkit-outer-spin-button {
 
 /* Form inputs base */
 .fleet-input {
-  @apply w-full bg-fleet-input border border-fleet-border rounded-lg px-3 py-2.5 text-sm text-white placeholder-fleet-muted focus:outline-none focus:border-fleet-red/60 transition-colors;
+  @apply w-full bg-fleet-input border border-[#c2c6d4] rounded-md px-3 py-2.5 text-sm text-[#0d1c2f] placeholder-fleet-muted focus:outline-none focus:border-fleet-red transition-colors;
 }
 
 .fleet-label {
   @apply block text-xs font-medium text-fleet-muted uppercase tracking-wider mb-1.5;
 }
+
+/* Light theme text overrides — only affect non-button elements */
+.text-zinc-400, .text-zinc-300 { color: #424752 !important; }
