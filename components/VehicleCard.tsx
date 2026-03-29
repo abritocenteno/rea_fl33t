@@ -38,7 +38,7 @@ export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
           </div>
         )}
         {vehicle.sold && (
-          <div className="absolute top-2 left-2">
+          <div className="absolute top-0 left-0">
             <Image
               src="/images/hd-sold-red-stamp-word-png-701751694685373mjc3xeasfb.png"
               alt="Verkocht"
