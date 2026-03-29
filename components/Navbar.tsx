@@ -14,6 +14,7 @@ export default function Navbar() {
             width={32}
             height={32}
             className="object-contain rounded"
+            style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(95%) saturate(900%) hue-rotate(185deg) brightness(95%)' }}
             unoptimized
           />
           <span className="font-bold text-sm tracking-widest text-[#0d1c2f] uppercase">

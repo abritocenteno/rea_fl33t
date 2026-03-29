@@ -56,13 +56,13 @@ export default async function VehicleDetailPage({ params }: Props) {
     <div className="max-w-5xl mx-auto px-4 py-8">
       {/* Breadcrumb + actions */}
       <div className="flex items-center justify-between mb-6">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm text-fleet-muted hover:text-white transition-colors">
+        <Link href="/" className="inline-flex items-center gap-2 text-sm text-fleet-muted hover:text-[#0d1c2f] transition-colors">
           <FiArrowLeft size={14} />
           Terug
         </Link>
         <Link
           href={`/vehicles/${params.id}/edit`}
-          className="flex items-center gap-2 bg-fleet-card border border-fleet-border hover:border-zinc-500 text-sm text-zinc-300 hover:text-white px-3.5 py-2 rounded-lg transition-all"
+          className="flex items-center gap-2 bg-fleet-card border border-[#c2c6d4]/60 hover:border-fleet-red text-sm text-[#424752] hover:text-[#0d1c2f] px-3.5 py-2 rounded-lg transition-all"
         >
           <FiEdit2 size={13} />
           Bewerken
@@ -93,7 +93,7 @@ export default async function VehicleDetailPage({ params }: Props) {
           {vehicle.beschrijving && (
             <div className="bg-fleet-card border border-fleet-border rounded-xl p-5">
               <h2 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Beschrijving</h2>
-              <p className="text-zinc-300 text-sm leading-relaxed whitespace-pre-line">{vehicle.beschrijving}</p>
+              <p className="text-[#424752] text-sm leading-relaxed whitespace-pre-line">{vehicle.beschrijving}</p>
             </div>
           )}
 
@@ -108,7 +108,7 @@ export default async function VehicleDetailPage({ params }: Props) {
                 </h2>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
                   {opts.map((opt, i) => (
-                    <li key={i} className="flex items-center gap-2 text-xs text-zinc-300">
+                    <li key={i} className="flex items-center gap-2 text-xs text-[#424752]">
                       <span className="w-1 h-1 rounded-full bg-fleet-red shrink-0" />
                       {opt}
                     </li>
@@ -134,7 +134,7 @@ export default async function VehicleDetailPage({ params }: Props) {
                     <row.icon size={13} />
                     {row.label}
                   </span>
-                  <span className="text-white font-medium">{row.value}</span>
+                  <span className="text-[#0d1c2f] font-medium">{row.value}</span>
                 </div>
               ))}
             </div>
