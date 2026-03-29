@@ -7,10 +7,12 @@ import VehicleCard from './VehicleCard'
 import { FiPlus } from 'react-icons/fi'
 
 type Filter = 'all' | 'available' | 'sold'
-type Sort = 'newest' | 'price-asc' | 'price-desc' | 'year-desc' | 'year-asc' | 'mileage-asc'
+type Sort = 'newest' | 'price-asc' | 'price-desc' | 'year-desc' | 'year-asc' | 'mileage-asc' | 'alpha-asc' | 'alpha-desc'
 
 const SORT_LABELS: Record<Sort, string> = {
   newest: 'Nieuwste eerst',
+  'alpha-asc': 'Naam: A → Z',
+  'alpha-desc': 'Naam: Z → A',
   'price-asc': 'Prijs: laag → hoog',
   'price-desc': 'Prijs: hoog → laag',
   'year-desc': 'Jaar: nieuw → oud',
@@ -20,7 +22,7 @@ const SORT_LABELS: Record<Sort, string> = {
 
 export default function FleetDashboard({ vehicles }: { vehicles: AutoDetails[] }) {
   const [filter, setFilter] = useState<Filter>('all')
-  const [sort, setSort] = useState<Sort>('newest')
+  const [sort, setSort] = useState<Sort>('alpha-asc')
 
   const total = vehicles.length
   const available = vehicles.filter((v) => !v.sold).length
@@ -44,6 +46,8 @@ export default function FleetDashboard({ vehicles }: { vehicles: AutoDetails[] }
         case 'year-desc': return parseInt(b.bouwjaar ?? '0') - parseInt(a.bouwjaar ?? '0')
         case 'year-asc': return parseInt(a.bouwjaar ?? '0') - parseInt(b.bouwjaar ?? '0')
         case 'mileage-asc': return (a.kmstand ?? 0) - (b.kmstand ?? 0)
+        case 'alpha-asc': return `${a.merk} ${a.model}`.localeCompare(`${b.merk} ${b.model}`)
+        case 'alpha-desc': return `${b.merk} ${b.model}`.localeCompare(`${a.merk} ${a.model}`)
         default: return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       }
     })
