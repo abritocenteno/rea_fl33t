@@ -27,6 +27,7 @@ export interface AutoDetails {
   optiesVeiligheid: string[]
   optiesMotor: string[]
   sold: boolean | null
+  locatie: string | null
 }
 
 export interface AanbodImages {
@@ -44,6 +45,7 @@ export interface Optie {
 }
 
 export const BRANDSTOF_OPTIONS = ['Benzine', 'Diesel', 'Elektrisch', 'Hybride', 'LPG']
+export const LOCATIE_OPTIONS = ['Uden', 'Zeeland']
 
 export type OptionKey = 'optiesInterieur' | 'optiesExterieur' | 'optiesComfort' | 'optiesInfotainment' | 'optiesVeiligheid' | 'optiesMotor'
 

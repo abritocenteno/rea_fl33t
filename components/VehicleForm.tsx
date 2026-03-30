@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { supabase } from '@/lib/supabase'
-import { AutoDetails, Optie, OptionKey, BRANDSTOF_OPTIONS, OPTIE_CATEGORIES } from '@/lib/types'
+import { AutoDetails, Optie, OptionKey, BRANDSTOF_OPTIONS, LOCATIE_OPTIONS, OPTIE_CATEGORIES } from '@/lib/types'
 import { FiChevronDown, FiChevronUp, FiX, FiUpload, FiLoader } from 'react-icons/fi'
 
 interface InitialData {
@@ -26,6 +26,7 @@ type FormState = {
   vraagprijs: string
   beschrijving: string
   sold: boolean
+  locatie: string
   optiesInterieur: string[]
   optiesExterieur: string[]
   optiesComfort: string[]
@@ -36,7 +37,7 @@ type FormState = {
 
 const emptyForm: FormState = {
   merk: '', model: '', bouwjaar: '', brandstof: '', kmstand: '', vraagprijs: '',
-  beschrijving: '', sold: false,
+  beschrijving: '', sold: false, locatie: '',
   optiesInterieur: [], optiesExterieur: [], optiesComfort: [],
   optiesInfotainment: [], optiesVeiligheid: [], optiesMotor: [],
 }
@@ -57,6 +58,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
       vraagprijs: v.vraagprijs != null ? String(v.vraagprijs) : '',
       beschrijving: v.beschrijving ?? '',
       sold: v.sold ?? false,
+      locatie: v.locatie ?? '',
       optiesInterieur: v.optiesInterieur ?? [],
       optiesExterieur: v.optiesExterieur ?? [],
       optiesComfort: v.optiesComfort ?? [],
@@ -171,6 +173,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
           beschrijving: form.beschrijving || null,
           image_url: allUrls[0] ?? null,
           sold: false,
+          locatie: form.locatie || null,
           optiesInterieur: form.optiesInterieur,
           optiesExterieur: form.optiesExterieur,
           optiesComfort: form.optiesComfort,
@@ -208,6 +211,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
             beschrijving: form.beschrijving || null,
             image_url: allUrls[0] ?? v.image_url,
             sold: form.sold,
+            locatie: form.locatie || null,
             optiesInterieur: form.optiesInterieur,
             optiesExterieur: form.optiesExterieur,
             optiesComfort: form.optiesComfort,
@@ -290,6 +294,13 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
             <select className="fleet-input" value={form.brandstof} onChange={(e) => setForm((p) => ({ ...p, brandstof: e.target.value }))}>
               <option value="">Selecteer brandstof</option>
               {BRANDSTOF_OPTIONS.map((b) => <option key={b} value={b}>{b}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className="fleet-label">Locatie</label>
+            <select className="fleet-input" value={form.locatie} onChange={(e) => setForm((p) => ({ ...p, locatie: e.target.value }))}>
+              <option value="">Selecteer locatie</option>
+              {LOCATIE_OPTIONS.map((l) => <option key={l} value={l}>{l}</option>)}
             </select>
           </div>
           <div>

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { AutoDetails } from '@/lib/types'
+import { AutoDetails, LOCATIE_OPTIONS } from '@/lib/types'
 import VehicleCard from './VehicleCard'
 import { FiPlus } from 'react-icons/fi'
 
@@ -23,6 +23,16 @@ const SORT_LABELS: Record<Sort, string> = {
 export default function FleetDashboard({ vehicles }: { vehicles: AutoDetails[] }) {
   const [filter, setFilter] = useState<Filter>('all')
   const [sort, setSort] = useState<Sort>('alpha-asc')
+  const [locations, setLocations] = useState<Set<string>>(new Set(LOCATIE_OPTIONS))
+
+  function toggleLocation(loc: string) {
+    setLocations((prev) => {
+      const next = new Set(prev)
+      if (next.has(loc) && next.size > 1) next.delete(loc)
+      else next.add(loc)
+      return next
+    })
+  }
 
   const total = vehicles.length
   const available = vehicles.filter((v) => !v.sold).length
@@ -38,6 +48,7 @@ export default function FleetDashboard({ vehicles }: { vehicles: AutoDetails[] }
     let list = [...vehicles]
     if (filter === 'available') list = list.filter((v) => !v.sold)
     if (filter === 'sold') list = list.filter((v) => v.sold)
+    list = list.filter((v) => !v.locatie || locations.has(v.locatie))
 
     list.sort((a, b) => {
       switch (sort) {
@@ -52,7 +63,7 @@ export default function FleetDashboard({ vehicles }: { vehicles: AutoDetails[] }
       }
     })
     return list
-  }, [vehicles, filter, sort])
+  }, [vehicles, filter, sort, locations])
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -85,6 +96,24 @@ export default function FleetDashboard({ vehicles }: { vehicles: AutoDetails[] }
           >
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
             <p className="text-xs text-fleet-muted mt-0.5">{s.label}</p>
+          </button>
+        ))}
+      </div>
+
+      {/* Location filter */}
+      <div className="flex items-center gap-2 mb-5">
+        <span className="text-xs text-fleet-muted font-medium uppercase tracking-wider mr-1">Locatie</span>
+        {LOCATIE_OPTIONS.map((loc) => (
+          <button
+            key={loc}
+            onClick={() => toggleLocation(loc)}
+            className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all border ${
+              locations.has(loc)
+                ? 'bg-fleet-red text-white border-fleet-red'
+                : 'bg-white text-fleet-muted border-[#c2c6d4]/60 hover:border-fleet-red/40'
+            }`}
+          >
+            {loc}
           </button>
         ))}
       </div>
