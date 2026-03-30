@@ -275,7 +275,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
 
       {/* Basic info */}
       <div className="bg-fleet-card border border-fleet-border rounded-xl p-5">
-        <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-4">Basisinformatie</h2>
+        <h2 className="text-sm font-semibold text-[#0d1c2f] uppercase tracking-wider mb-4">Basisinformatie</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="fleet-label">Merk *</label>
@@ -322,14 +322,14 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
             >
               <span className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${form.sold ? 'translate-x-5' : ''}`} />
             </button>
-            <span className="text-sm text-zinc-300">Verkocht</span>
+            <span className="text-sm text-[#0d1c2f]">Verkocht</span>
           </div>
         )}
       </div>
 
       {/* Description */}
       <div className="bg-fleet-card border border-fleet-border rounded-xl p-5">
-        <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-4">Beschrijving</h2>
+        <h2 className="text-sm font-semibold text-[#0d1c2f] uppercase tracking-wider mb-4">Beschrijving</h2>
         <textarea
           className="fleet-input resize-none h-28"
           placeholder="Beschrijf het voertuig..."
@@ -341,7 +341,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
       {/* Options */}
       <div className="bg-fleet-card border border-fleet-border rounded-xl overflow-hidden">
         <div className="px-5 py-4 border-b border-fleet-border">
-          <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider">Opties</h2>
+          <h2 className="text-sm font-semibold text-[#0d1c2f] uppercase tracking-wider">Opties</h2>
         </div>
         {OPTIE_CATEGORIES.map((cat) => {
           const catOpties = opties.filter((o) => o.categorie?.toLowerCase() === cat.label.toLowerCase())
@@ -355,7 +355,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
                 onClick={() => toggleSection(cat.key as string)}
                 className="w-full flex items-center justify-between px-5 py-3.5 hover:bg-white/5 transition-colors text-left"
               >
-                <span className="text-sm font-medium text-zinc-200">
+                <span className="text-sm font-medium text-[#0d1c2f]">
                   {cat.label}
                   {selected.length > 0 && (
                     <span className="ml-2 text-xs bg-fleet-red/20 text-fleet-red px-1.5 py-0.5 rounded-full">
@@ -363,7 +363,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
                     </span>
                   )}
                 </span>
-                {isOpen ? <FiChevronUp size={15} className="text-zinc-500" /> : <FiChevronDown size={15} className="text-zinc-500" />}
+                {isOpen ? <FiChevronUp size={15} className="text-[#424752]" /> : <FiChevronDown size={15} className="text-[#424752]" />}
               </button>
 
               {isOpen && (
@@ -379,7 +379,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
                           <label key={o.id} className="flex items-center gap-2 cursor-pointer group">
                             <span
                               className={`w-4 h-4 rounded border shrink-0 flex items-center justify-center transition-colors ${
-                                checked ? 'bg-fleet-red border-fleet-red' : 'border-fleet-border group-hover:border-zinc-500'
+                                checked ? 'bg-fleet-red border-fleet-red' : 'border-[#9ca3af] group-hover:border-[#424752]'
                               }`}
                               onClick={() => toggleOption(cat.key, val)}
                             >
@@ -389,7 +389,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
                                 </svg>
                               )}
                             </span>
-                            <span className="text-xs text-zinc-300 group-hover:text-white transition-colors">{val}</span>
+                            <span className="text-xs text-[#424752] group-hover:text-[#0d1c2f] transition-colors">{val}</span>
                           </label>
                         )
                       })}
@@ -404,7 +404,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
 
       {/* Images */}
       <div className="bg-fleet-card border border-fleet-border rounded-xl p-5">
-        <h2 className="text-sm font-semibold text-zinc-300 uppercase tracking-wider mb-4">Afbeeldingen</h2>
+        <h2 className="text-sm font-semibold text-[#0d1c2f] uppercase tracking-wider mb-4">Afbeeldingen</h2>
 
         {/* Existing + new images grid */}
         {(existingImages.length > 0 || newPreviews.length > 0) && (
@@ -470,7 +470,7 @@ export default function VehicleForm({ mode, initialData }: VehicleFormProps) {
           <button
             type="button"
             onClick={() => router.back()}
-            className="text-zinc-400 hover:text-white px-4 py-2.5 rounded-lg border border-fleet-border hover:border-zinc-600 text-sm transition-colors"
+            className="text-[#424752] hover:text-[#0d1c2f] px-4 py-2.5 rounded-lg border border-[#c2c6d4]/60 hover:border-[#424752] text-sm transition-colors"
           >
             Annuleren
           </button>

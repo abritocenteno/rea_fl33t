@@ -28,7 +28,7 @@ export default async function EditVehiclePage({ params }: Props) {
     <div className="max-w-3xl mx-auto px-4 py-8">
       <Link
         href={`/vehicles/${params.id}`}
-        className="inline-flex items-center gap-2 text-sm text-fleet-muted hover:text-white transition-colors mb-6"
+        className="inline-flex items-center gap-2 text-sm text-fleet-muted hover:text-[#0d1c2f] transition-colors mb-6"
       >
         <FiArrowLeft size={14} />
         Terug naar detail

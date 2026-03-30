@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { AutoDetails } from '@/lib/types'
-import { FiCalendar, FiActivity, FiDroplet, FiEdit2 } from 'react-icons/fi'
+import { FiCalendar, FiActivity, FiDroplet, FiEdit2, FiMapPin } from 'react-icons/fi'
 
 export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
   const router = useRouter()
@@ -75,6 +75,9 @@ export default function VehicleCard({ vehicle }: { vehicle: AutoDetails }) {
           )}
           {vehicle.brandstof && (
             <span className="flex items-center gap-1"><FiDroplet size={11} />{vehicle.brandstof}</span>
+          )}
+          {vehicle.locatie && (
+            <span className="flex items-center gap-1"><FiMapPin size={11} />{vehicle.locatie}</span>
           )}
         </div>
       </div>
