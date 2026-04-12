@@ -8,10 +8,24 @@ export const metadata: Metadata = {
   icons: { icon: '/images/favicon.png' },
 }
 
+// Runs synchronously before React hydrates — prevents flash of wrong theme
+const themeScript = `
+  try {
+    var t = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (t === 'dark' || (!t && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    }
+  } catch (e) {}
+`
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="nl">
-      <body className="bg-fleet-bg text-[#0d1c2f] min-h-screen flex flex-col">
+    <html lang="nl" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-fleet-bg text-fleet-neutral min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
       </body>

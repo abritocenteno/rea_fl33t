@@ -10,8 +10,8 @@ export default function ImageCarousel({ images, alt }: { images: string[]; alt: 
 
   if (!images.length) {
     return (
-      <div className="aspect-[16/9] bg-fleet-card border border-fleet-border rounded-xl flex items-center justify-center">
-        <Image src="/images/error_image.jpg" alt="Geen afbeelding" width={80} height={80} className="opacity-20 object-contain" />
+      <div className="aspect-[16/9] bg-fleet-bg border border-fleet-border rounded-xl flex items-center justify-center">
+        <span className="font-display font-bold text-3xl text-fleet-border select-none">Geen afbeelding</span>
       </div>
     )
   }
@@ -37,22 +37,30 @@ export default function ImageCarousel({ images, alt }: { images: string[]; alt: 
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <Image src={images[index]} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 60vw" />
+        <Image
+          src={images[index]}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 60vw"
+          priority
+        />
+
         {images.length > 1 && (
           <>
             <button
               onClick={prev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-lg transition-colors"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-fleet-card/90 hover:bg-fleet-card text-fleet-neutral p-2 rounded-lg shadow-card transition-all duration-150 backdrop-blur-sm"
             >
-              <FiChevronLeft size={18} />
+              <FiChevronLeft size={16} />
             </button>
             <button
               onClick={next}
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-lg transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-fleet-card/90 hover:bg-fleet-card text-fleet-neutral p-2 rounded-lg shadow-card transition-all duration-150 backdrop-blur-sm"
             >
-              <FiChevronRight size={18} />
+              <FiChevronRight size={16} />
             </button>
-            <div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2.5 py-1 rounded-full">
+            <div className="absolute bottom-3 right-3 bg-fleet-card/90 backdrop-blur-sm text-fleet-neutral text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-card">
               {index + 1} / {images.length}
             </div>
           </>
@@ -61,13 +69,15 @@ export default function ImageCarousel({ images, alt }: { images: string[]; alt: 
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-1">
+        <div className="flex gap-1.5 overflow-x-auto pb-1">
           {images.map((url, i) => (
             <button
               key={i}
               onClick={() => setIndex(i)}
-              className={`relative shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-colors ${
-                i === index ? 'border-fleet-red' : 'border-transparent opacity-60 hover:opacity-100'
+              className={`relative shrink-0 w-16 h-11 rounded-lg overflow-hidden border-2 transition-all duration-150 ${
+                i === index
+                  ? 'border-fleet-primary shadow-primary'
+                  : 'border-transparent opacity-60 hover:opacity-90 hover:border-fleet-border'
               }`}
             >
               <Image src={url} alt={`${alt} ${i + 1}`} fill className="object-cover" sizes="64px" />

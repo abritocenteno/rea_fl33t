@@ -25,16 +25,16 @@ export default async function EditVehiclePage({ params }: Props) {
   const images = Array.isArray(imgRow?.url) ? imgRow.url : []
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
       <Link
         href={`/vehicles/${params.id}`}
-        className="inline-flex items-center gap-2 text-sm text-fleet-muted hover:text-[#0d1c2f] transition-colors mb-6"
+        className="inline-flex items-center gap-1.5 text-[12px] font-medium text-fleet-secondary hover:text-fleet-primary transition-colors mb-6"
       >
-        <FiArrowLeft size={14} />
-        Terug naar detail
+        <FiArrowLeft size={13} />
+        Terug
       </Link>
-      <h1 className="text-xl font-bold text-[#0d1c2f] mb-6">
-        {vehicle.merk} {vehicle.model} bewerken
+      <h1 className="font-display font-bold text-3xl text-fleet-neutral mb-6">
+        {vehicle.merk} {vehicle.model}
       </h1>
       <VehicleForm mode="edit" initialData={{ vehicle, images }} />
     </div>

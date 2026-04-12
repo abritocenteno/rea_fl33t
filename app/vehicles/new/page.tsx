@@ -4,15 +4,15 @@ import { FiArrowLeft } from 'react-icons/fi'
 
 export default function NewVehiclePage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
       <Link
         href="/"
-        className="inline-flex items-center gap-2 text-sm text-fleet-muted hover:text-[#0d1c2f] transition-colors mb-6"
+        className="inline-flex items-center gap-1.5 text-[12px] font-medium text-fleet-secondary hover:text-fleet-primary transition-colors mb-6"
       >
-        <FiArrowLeft size={14} />
-        Terug naar overzicht
+        <FiArrowLeft size={13} />
+        Overzicht
       </Link>
-      <h1 className="text-xl font-bold text-[#0d1c2f] mb-6">Nieuw voertuig toevoegen</h1>
+      <h1 className="font-display font-bold text-3xl text-fleet-neutral mb-6">Nieuw voertuig</h1>
       <VehicleForm mode="add" />
     </div>
   )
