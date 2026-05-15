@@ -5,6 +5,8 @@ import { AutoDetails, AanbodImages } from '@/lib/types'
 import ImageCarousel from '@/components/ImageCarousel'
 import { FiArrowLeft, FiEdit2, FiCalendar, FiActivity, FiDroplet, FiMapPin, FiDollarSign } from 'react-icons/fi'
 
+export const dynamic = 'force-dynamic'
+
 interface Props { params: { id: string } }
 
 async function getVehicle(aanbodId: string): Promise<AutoDetails | null> {

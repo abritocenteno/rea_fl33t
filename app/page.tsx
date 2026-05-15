@@ -2,6 +2,8 @@ import { supabase } from '@/lib/supabase'
 import { AutoDetails } from '@/lib/types'
 import FleetDashboard from '@/components/FleetDashboard'
 
+export const dynamic = 'force-dynamic'
+
 async function getVehicles(): Promise<AutoDetails[]> {
   const { data } = await supabase
     .from('auto_details')
