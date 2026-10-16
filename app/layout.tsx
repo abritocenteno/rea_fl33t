@@ -28,6 +28,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-fleet-bg text-fleet-neutral min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <footer className="border-t border-fleet-border px-4 py-4 text-center text-xs text-fleet-muted">
+          Powered by{' '}
+          <a
+            href="https://prikichilabs.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-fleet-border underline-offset-2 hover:text-fleet-primary transition-colors"
+          >
+            Prikichi Labs
+          </a>
+        </footer>
       </body>
     </html>
   )
