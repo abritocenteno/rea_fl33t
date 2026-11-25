@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { AutoDetails, AanbodImages } from '@/lib/types'
 import ImageCarousel from '@/components/ImageCarousel'
-import { FiArrowLeft, FiEdit2, FiCalendar, FiActivity, FiDroplet, FiMapPin, FiDollarSign } from 'react-icons/fi'
+import { FiArrowLeft, FiEdit2, FiCalendar, FiActivity, FiDroplet, FiMapPin, FiDollarSign, FiSettings } from 'react-icons/fi'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,6 +58,7 @@ export default async function VehicleDetailPage({ params }: Props) {
     { icon: FiCalendar,   label: 'Bouwjaar',       value: vehicle.bouwjaar },
     { icon: FiActivity,   label: 'Kilometerstand',  value: km !== '—' ? km : null },
     { icon: FiDroplet,    label: 'Brandstof',       value: vehicle.brandstof },
+    { icon: FiSettings,   label: 'Transmissie',     value: vehicle.transmissie },
     { icon: FiMapPin,     label: 'Locatie',         value: vehicle.locatie },
     { icon: FiDollarSign, label: 'Vraagprijs',      value: price },
   ].filter((r) => r.value)
